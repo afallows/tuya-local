@@ -2,6 +2,9 @@ name: Moistenland Irrigation
 products:
   - id: 8t5hebn0
     name: MoistenLand Timer
+### Bluetooth Gateway GWB-03 Only handles one connection at a time,
+### even when using Tuya Cloud. Non Persistent connection required.
+    persist: False
 primary_entity:
   entity: switch
   dps:
@@ -87,3 +90,18 @@ secondary_entities:
             value: "Auto"
           - dps_val: "idle"
             value: "Idle"
+### Usage time not updating as expected. DP included but may need to be modified. Not sure what information this DP is actually providing
+  - entity: sensor
+    name: Use_Time_s
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 86400
+        unit: s
+        mapping:
+          - scale: 1
+            step:  1           
